@@ -56,8 +56,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'image_manager.urls'
 
-# Allow all domains for simplicity (you can restrict this to only certain domains later)
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
 
 TEMPLATES = [
     {
