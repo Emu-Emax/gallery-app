@@ -1,15 +1,20 @@
 version: "3"
 
 services:
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: gallerydb
+
   backend:
     build:
       context: ./backend
     ports:
       - "8000:8000"
-    volumes:
-      - ./backend:/usr/src/app
-    environment:
-      - DEBUG=1
     depends_on:
       - db
     command: >
@@ -21,17 +26,3 @@ services:
       context: ./frontend
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend:/usr/src/app
-
-  db:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: gallerydb
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:

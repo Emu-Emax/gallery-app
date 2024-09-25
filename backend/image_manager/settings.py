@@ -85,10 +85,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'gallerydb',
-        'USER': 'user',                             
+        'USER': 'user',
         'PASSWORD': 'password',
         'HOST': 'db',
         'PORT': '5432',
+        'OPTIONS': {
+            'connect_timeout': 10,  # Timeout in seconds
+            'options': '-c statement_timeout=5000'  # Optional, limits query execution time
+        },
     }
 }
 
