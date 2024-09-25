@@ -42,7 +42,7 @@ const Gallery = () => {
               index={index}
               src={image}
               fetchImages={fetchImages}
-              key={image.substring(0, 3)}
+              key={index}
             />
           ))}
         </LoaderWrapper>

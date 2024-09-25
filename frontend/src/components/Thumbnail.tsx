@@ -36,12 +36,9 @@ const Thumbnail = ({ index, src, fetchImages }: IGalleryImageProps) => {
         reader.onload = async () => {
           const base64String = reader.result as string
           try {
-            const response = await axios.put(
-              `${API_URL_PUT_IMAGE as string}/${index}/`,
-              {
-                image: base64String,
-              }
-            )
+            void (await axios.put(`${API_URL_PUT_IMAGE as string}/${index}/`, {
+              image: base64String,
+            }))
 
             // refetch images
             fetchImages(true)

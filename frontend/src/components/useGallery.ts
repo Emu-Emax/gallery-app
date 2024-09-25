@@ -20,11 +20,11 @@ export const useGallery = () => {
       return
     }
 
-    const newImages: string[] = []
     const startIndex = (currentPage - 1) * imagesPerPage
     const endIndex = currentPage * imagesPerPage
 
     const promises = []
+    const orderedImages = new Array(endIndex - startIndex)
     for (let i = startIndex; i < endIndex; i++) {
       promises.push(
         axios
@@ -33,11 +33,12 @@ export const useGallery = () => {
           })
           .then((response: IFetchImagesResponse) => {
             const url = URL.createObjectURL(response.data)
-            newImages.push(url)
+            orderedImages[i - startIndex] = url
             return url
           })
           .catch(error => {
             console.error('Error fetching image', error)
+            orderedImages[i - startIndex] = null
           })
       )
     }
@@ -46,7 +47,7 @@ export const useGallery = () => {
 
     setImageCache(prevCache => ({
       ...prevCache,
-      [currentPage]: newImages,
+      [currentPage]: orderedImages.filter(url => url !== null),
     }))
 
     setIsLoading(false)
