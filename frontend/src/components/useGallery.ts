@@ -20,9 +20,12 @@ export const useGallery = () => {
       return
     }
 
-    const newImages: string[] = []
     const startIndex = (currentPage - 1) * imagesPerPage
     const endIndex = currentPage * imagesPerPage
+
+    const newImages: string[] = imageCache[currentPage]
+      ? [...imageCache[currentPage]]
+      : []
 
     for (let i = startIndex; i < endIndex; i++) {
       try {
@@ -33,16 +36,17 @@ export const useGallery = () => {
           }
         )
         const url = URL.createObjectURL(response.data)
+
         newImages.push(url)
+
+        setImageCache(prevCache => ({
+          ...prevCache,
+          [currentPage]: [...newImages],
+        }))
       } catch (error) {
         console.error('Error fetching image', error)
       }
     }
-
-    setImageCache(prevCache => ({
-      ...prevCache,
-      [currentPage]: newImages,
-    }))
 
     setIsLoading(false)
   }
