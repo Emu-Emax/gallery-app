@@ -1,0 +1,33 @@
+# dependencies
+frontend/node_modules
+
+# production
+frontend/build
+
+# misc
+frontend/.DS_Store
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+backend/media
+
+# IDE
+*.idea
+
+# database
+*.db
+*.rdb
+*.ipynb
+db.*
+
+# other
+*~
+*/*~
+*.pyc
+*.log
+.DS_Store

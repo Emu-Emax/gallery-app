@@ -1,0 +1,2 @@
+export const API_URL_PUT_IMAGE = process.env.REACT_APP_API_URL_PUT_IMAGE
+export const API_URL_GET_PREVIEW = process.env.REACT_APP_API_URL_GET_PREVIEW
