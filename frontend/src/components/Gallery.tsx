@@ -13,7 +13,7 @@ export const GalleryWrapper = styled(Core.Div)(
     justify-content: center;
     align-items: center;
     gap: 16px;
-    width: 100%;
+    width: 1100px;
     min-height: 900px;
   `
 )
@@ -35,18 +35,24 @@ const Gallery = () => {
           First fetch can take a while. Click on image to replace it. Enjoy ;)
         </Typography.Body>
       </Core.Div>
-      <GalleryWrapper>
-        <LoaderWrapper isLoading={isLoading}>
-          {images.map((image, index) => (
-            <Thumbnail
-              index={index}
-              src={image}
-              fetchImages={fetchImages}
-              key={index}
-            />
-          ))}
-        </LoaderWrapper>
-      </GalleryWrapper>
+      <Core.Div
+        flex="row"
+        w="100%"
+        justifyContent="center"
+      >
+        <GalleryWrapper>
+          <LoaderWrapper isLoading={isLoading}>
+            {images.map((image, index) => (
+              <Thumbnail
+                index={index}
+                src={image}
+                fetchImages={fetchImages}
+                key={index}
+              />
+            ))}
+          </LoaderWrapper>
+        </GalleryWrapper>
+      </Core.Div>
       <Pagination
         handlePageChange={handlePageChange}
         isLoading={isLoading}
